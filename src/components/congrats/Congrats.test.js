@@ -5,6 +5,13 @@ import { Congrats } from './Congrats.js';
 
 Enzyme.configure({ adapter: new EnzymeAdapater() });
 
+
+/**
+ * Factory function to create shallow wrapper for the Congrats component
+ * @function setup
+ * @param {object} props - component props specific to this setup
+ * @returns {ShallowWrapper}
+ */
 const setup = (props = {} ) => {
     return shallow(<Congrats {...props}/>);
 }
