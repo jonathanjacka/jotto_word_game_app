@@ -5,8 +5,12 @@ import { Congrats } from './Congrats.js';
 
 Enzyme.configure({ adapter: new EnzymeAdapater() });
 
+const setup = (props = {} ) => {
+    return shallow(<Congrats {...props}/>);
+}
+
 test('renders without crashing', () => {
-    const wrapper = shallow(<Congrats />);
+    const wrapper = setup();
     expect(wrapper.length).toBe(1);
 });
 
