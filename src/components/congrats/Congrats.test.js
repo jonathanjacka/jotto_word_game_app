@@ -9,3 +9,11 @@ test('renders without crashing', () => {
     const wrapper = shallow(<Congrats />);
     expect(wrapper.length).toBe(1);
 });
+
+test('renders no text when "success" prop is false', () => {
+
+});
+
+test('renders non-empty congrats message when "success" prop is true', () => {
+
+});
