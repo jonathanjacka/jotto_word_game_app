@@ -1,3 +1,5 @@
+import React from 'react';
+
 /**
  * Functional react component for congrats message
  * @function
@@ -5,12 +7,17 @@
  * @returns {JSX.Element} - rendered component or 'null' if success prop is false
  */
 
-import React from 'react';
-
 export const Congrats = ( { success } ) => {
 
-
-    return (
-        <div data-test='component-congrats'>Congrats!</div>
-    );
+        if(success){
+            return(
+                <div data-test='component-congrats'>
+                    <span data-test='congrats-message'>Well done, you guessed the word!</span>
+                </div>
+            )
+        }else{
+            return(
+                <div data-test='component-congrats'></div>
+            )
+        }
 }
