@@ -7,4 +7,4 @@
  * @returns {ShallowWrapper}
  */
 
-export const findByTestAttr = (wrapper, value) => wrapper.find(`[data-test='${value}']`);
+export const findByTestAttr = (wrapper, value) => wrapper.find(`[data-test="${value}"]`);

@@ -7,10 +7,10 @@
 
 import React from 'react';
 
-export const Congrats = ( {success} ) => {
+export const Congrats = ( { success } ) => {
 
 
     return (
-        <div>Congrats!</div>
+        <div data-test='component-congrats'>Congrats!</div>
     );
 }
