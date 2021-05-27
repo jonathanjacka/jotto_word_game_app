@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'; 
 
+
 /**
  * Functional react component for congrats message
  * @function
@@ -21,4 +22,8 @@ export const Congrats = ( { success } ) => {
                 <div data-test='component-congrats'></div>
             )
         }
+}
+
+Congrats.PropTypes = {
+    success: PropTypes.bool.isRequired
 }
