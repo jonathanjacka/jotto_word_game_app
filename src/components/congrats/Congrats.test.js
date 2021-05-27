@@ -7,6 +7,8 @@ import { findByTestAttr } from '../../../test/testUtils.js';
 
 Enzyme.configure({ adapter: new EnzymeAdapater() });
 
+//default props value
+const defaultProps = { success: false };
 
 /**
  * Factory function to create shallow wrapper for the Congrats component
@@ -15,7 +17,8 @@ Enzyme.configure({ adapter: new EnzymeAdapater() });
  * @returns {ShallowWrapper}
  */
 const setup = (props = {} ) => {
-    return shallow(<Congrats {...props}/>);
+    const setupProps = {...defaultProps, ...props}
+    return shallow(<Congrats {...setupProps}/>);
 }
 
 test('renders without crashing', () => {
