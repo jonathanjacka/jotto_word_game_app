@@ -12,7 +12,7 @@ function App() {
   ];
 
   return (
-    <div className="App">
+    <div className="App container">
       <h1>Jotto</h1>
       <Congrats success={true} />
       <GuessedWords guessedWords={guessedWords} />
