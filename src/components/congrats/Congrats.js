@@ -24,6 +24,6 @@ export const Congrats = ( { success } ) => {
         }
 }
 
-Congrats.PropTypes = {
+Congrats.propTypes = {
     success: PropTypes.bool.isRequired
 }

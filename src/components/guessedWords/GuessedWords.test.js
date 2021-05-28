@@ -5,7 +5,7 @@ import { findByTestAttr } from '../../../test/testUtils.js';
 import { GuessedWords } from './GuessedWords';
 
 const defaultProps = {
-    GuessedWords: [{
+    guessedWords: [{
         guessedWord: 'train',
         letterMatchCount: 3
     }]
@@ -62,6 +62,6 @@ describe('if there have been words guessed', () => {
 
     test('displays correct number of guessed words', () => {
         const guessedWordsNodes = findByTestAttr(wrapper, 'guessed-word');
-        expect(guessedWordsNodes.length).toBe(GuessedWords.length);
+        expect(guessedWordsNodes.length).toBe(guessedWords.length);
     });
 });
