@@ -9,5 +9,10 @@ export const GuessedWords = (props) => {
 }
 
 GuessedWords.propTypes = {
-
+    GuessedWords: PropTypes.arrayOf(
+        PropTypes.shape({
+            GuessedWord: PropTypes.string.isRequired,
+            letterMatchCount: PropTypes.number.isRequired
+        })
+    ).isRequired
 }

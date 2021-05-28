@@ -4,12 +4,12 @@ import { findByTestAttr } from '../../../test/testUtils.js';
 
 import { GuessedWords } from './GuessedWords';
 
-const defaultProps = [{
+const defaultProps = {
     GuessedWords: [{
         guessedWord: 'train',
         letterMatchCount: 3
     }]
-}];
+};
 
 /**
  * Factory function to create shallow wrapper for the Congrats component
