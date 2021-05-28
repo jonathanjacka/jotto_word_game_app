@@ -3,8 +3,16 @@ import PropTypes from 'prop-types';
 
 export const GuessedWords = (props) => {
 
+    let contents;
+
+    if(props.GuessedWords.length === 0){
+        contents = 'Try to guess the correct word!';
+    }
+    
     return (
-        <div data-test="component-guessedWords" >GuessedWords</div>
+        <div data-test="component-guessed-words">
+            <span data-test="component-guess-instructions">{contents}</span>
+        </div>
     );
 }
 

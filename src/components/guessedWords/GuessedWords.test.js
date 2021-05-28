@@ -22,10 +22,23 @@ const setUp = (props = {}) => {
     return shallow(<GuessedWords {...setupProps}/>);
 }
 
+describe('if there are no words guessed', () =>{
+    let wrapper;
 
+    beforeEach(() => {
+        wrapper = setUp({GuessedWords: []});
+    });
+    
+    test('renders without error', () => {
+        const component = findByTestAttr(wrapper, 'component-guessed-words');
+        expect(component.length).toBe(1);
+    });
+    test('renders instructions to guess a word', () => {
+        const component = findByTestAttr(wrapper, 'component-guess-instructions');
+        expect(component.text().length).not.toBe(0);
+    });
+});
 
-test('component renders without crashing', () => {
-    const wrapper = setUp();
-    const component = findByTestAttr(wrapper, 'component-guessedWords');
-    expect(component.length).toBe(1);
+describe('if there have been words guessed', () => {
+
 });
