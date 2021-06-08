@@ -10,8 +10,8 @@ import { Input } from './input';
  * @returns {ShallowWrapper}
  */
 
-const setup = (props = {}) => {
-    const setupProps = {...props};
+const setup = (secretWord = {}) => {
+    const setupProps = {...secretWord};
     return shallow(<Input {...setupProps}/>)
 }
 
