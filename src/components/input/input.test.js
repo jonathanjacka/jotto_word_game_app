@@ -9,11 +9,21 @@ import { Input } from './input';
  * @param {Object} props - component props specific to this setup
  * @returns {ShallowWrapper}
  */
-
 const setup = (secretWord = {}) => {
     const setupProps = {...secretWord};
     return shallow(<Input {...setupProps}/>)
 }
+
+//update mocking to be able to test change to state with destructuring - see 'state updates with value of input box on change'
+const mockSetCurrentGuess = jest.fn();
+
+jest.mock('react', () => {
+    return (
+        {...jest.requireActual('react'), 
+        useState: (initialState) => [initialState, mockSetCurrentGuess]
+    })
+});
+
 
 test('renders without crashing', () => {
     const wrapper = setup();
@@ -23,8 +33,6 @@ test('renders without crashing', () => {
 
 describe('state-controlled input field', () => {
     test('state updates with value of input box on change', () => {
-        const mockSetCurrentGuess = jest.fn();
-        React.useState = jest.fn(() => ["", mockSetCurrentGuess]);
 
         const wrapper = setup();
         const inputBox = findByTestAttr(wrapper, 'input-box');
