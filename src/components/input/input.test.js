@@ -32,15 +32,33 @@ test('renders without crashing', () => {
 });
 
 describe('state-controlled input field', () => {
-    test('state updates with value of input box on change', () => {
 
-        const wrapper = setup();
+    let wrapper; 
+    let originalUseState;
+    
+    beforeEach(() => {
+        mockSetCurrentGuess.mockClear();
+        wrapper = setup();
+        originalUseState = React.useState;
+    });
+    afterEach(() => {
+        React.useState = originalUseState;
+    });
+
+    test('state updates with value of input box on change', () => {
         const inputBox = findByTestAttr(wrapper, 'input-box');
 
         const mockEvent = { target: { value: 'poopie' } };
         inputBox.simulate("change", mockEvent);
 
         expect(mockSetCurrentGuess).toHaveBeenCalledWith('poopie');
+    });
+
+    test('state updates with empty string on submit', () => {
+        const submitButton = findByTestAttr(wrapper, 'submit-button');
+
+        submitButton.simulate("click", { preventDefault() {}});
+        expect(mockSetCurrentGuess).toHaveBeenCalledWith('');
     });
 });
 
