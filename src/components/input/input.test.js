@@ -9,9 +9,9 @@ import { Input } from './input';
  * @param {Object} props - component props specific to this setup
  * @returns {ShallowWrapper}
  */
-const setup = (secretWord = {}) => {
+const setup = (success = false, secretWord ='party') => {
     const setupProps = {...secretWord};
-    return shallow(<Input {...setupProps}/>)
+    return shallow(<Input success={success} {...setupProps}/>)
 }
 
 //update mocking to be able to test change to state with destructuring - see 'state updates with value of input box on change'
@@ -29,6 +29,43 @@ test('renders without crashing', () => {
     const wrapper = setup();
     const component = findByTestAttr(wrapper, 'component-input');
     expect(component.length).toBe(1);
+});
+
+describe('success is true', () => {
+    let wrapper;
+
+    beforeEach(() => {
+        wrapper = setup(true);
+    });
+    test('Input component renders without error', () => {
+        const inputComponent = findByTestAttr(wrapper, 'component-input');
+        expect(inputComponent.length).toBe(1);
+    });
+    
+    test('Input does not show', () => {
+        const inputBox = findByTestAttr(wrapper, 'input-box');
+        expect(inputBox.exists()).toBe(false);
+    });
+
+    test('Submit button does not show', () => {
+        const submitButton = findByTestAttr(wrapper, 'submit-button');
+        expect(submitButton.exists()).toBe(false);
+
+    })
+});
+
+describe('Succes is false', () => {
+    test('Input component renders without error', () => {
+
+    });
+    
+    test('Input does show', () => {
+
+    });
+
+    test('Submit button does show', () => {
+        
+    })
 });
 
 describe('state-controlled input field', () => {
