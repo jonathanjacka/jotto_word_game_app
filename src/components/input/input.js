@@ -1,9 +1,26 @@
 import React, { useState } from 'react';
 import Proptypes from 'prop-types';
 
-export const Input = ({ secretWord }) => {
+export const Input = ({ secretWord, guessedWords, success }) => {
 
     const [currentGuess, setCurrentGuess] = useState('');
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        //add currentGuess to guessedWords Array
+
+        if(currentGuess === secretWord){
+            //update success
+            success = true;
+        }
+
+        setCurrentGuess('');
+    }
+
+    if(success){
+        return <div data-test="component-input"></div>;
+    }
 
     return (
         <div data-test="component-input">
@@ -20,12 +37,7 @@ export const Input = ({ secretWord }) => {
                 <button
                     data-test="submit-button"
                     className="btn btn-primary mb-2"
-                    onClick={(event) => {
-                        event.preventDefault();
-                        //TODO: update guessedWords
-                        //TODO: update check against secretword and update success if needed
-                        setCurrentGuess('');
-                    }}
+                    onClick={handleSubmit}
                 >
                 Submit
                 </button>

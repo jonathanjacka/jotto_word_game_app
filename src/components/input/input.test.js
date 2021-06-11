@@ -31,42 +31,55 @@ test('renders without crashing', () => {
     expect(component.length).toBe(1);
 });
 
-describe('success is true', () => {
-    let wrapper;
-
-    beforeEach(() => {
-        wrapper = setup(true);
-    });
-    test('Input component renders without error', () => {
-        const inputComponent = findByTestAttr(wrapper, 'component-input');
-        expect(inputComponent.length).toBe(1);
-    });
+describe('When rendering', () => {
+    describe('success is true', () => {
+        let wrapper;
     
-    test('Input does not show', () => {
-        const inputBox = findByTestAttr(wrapper, 'input-box');
-        expect(inputBox.exists()).toBe(false);
-    });
-
-    test('Submit button does not show', () => {
-        const submitButton = findByTestAttr(wrapper, 'submit-button');
-        expect(submitButton.exists()).toBe(false);
-
-    })
-});
-
-describe('Succes is false', () => {
-    test('Input component renders without error', () => {
-
-    });
-    
-    test('Input does show', () => {
-
-    });
-
-    test('Submit button does show', () => {
+        beforeEach(() => {
+            wrapper = setup(true);
+        });
+        test('Input component renders without error', () => {
+            const inputComponent = findByTestAttr(wrapper, 'component-input');
+            expect(inputComponent.length).toBe(1);
+        });
         
-    })
+        test('Input does not show', () => {
+            const inputBox = findByTestAttr(wrapper, 'input-box');
+            expect(inputBox.exists()).toBe(false);
+        });
+    
+        test('Submit button does not show', () => {
+            const submitButton = findByTestAttr(wrapper, 'submit-button');
+            expect(submitButton.exists()).toBe(false);
+        })
+    });
+    
+    describe('Success is false', () => {
+        
+        let wrapper;
+    
+        beforeEach(() => {
+            wrapper = setup(false);
+        });
+        
+        test('Input component renders without error', () => {
+            const inputComponent = findByTestAttr(wrapper, 'component-input');
+            expect(inputComponent.length).toBe(1);
+        });
+        
+        test('Input does show', () => {
+            const inputBox = findByTestAttr(wrapper, 'input-box');
+            expect(inputBox.exists()).toBe(true);
+        });
+    
+        test('Submit button does show', () => {
+            const submitButton = findByTestAttr(wrapper, 'submit-button');
+            expect(submitButton.exists()).toBe(true);
+        })
+    });
 });
+
+
 
 describe('state-controlled input field', () => {
 
