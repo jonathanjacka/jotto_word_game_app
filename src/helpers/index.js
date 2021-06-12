@@ -9,12 +9,16 @@ export const getLetterMatchCount = (guessedWord, secretWord) => {
     
     let count = 0;
     const obj = secretWord.split("");
-    for(let str of guessedWord){
-      let idx = obj.findIndex(s => s === str);
+    for(let char of guessedWord){
+      let idx = obj.findIndex(i => i === char);
       if(idx >= 0){
         count++;
         obj.splice(idx, 1);
       }
     }
     return count;
+
+    // const secretLetters = secretWord.split('');
+    // const guessedLetterSet = new Set(guessedWord);
+    //return secretLetters.filter(letter => guessedLetterSet.has(letter)).length;
   }
