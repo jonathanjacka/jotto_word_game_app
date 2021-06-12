@@ -17,29 +17,13 @@ function App() {
     ]
   );
 
-  const updateGuessedWords = (currentGuess) => {
-    
-    let word = currentGuess;
-    let count = 0;
-
-    for(let letter of secretWord) {
-      for(let i in currentGuess) {
-        if(currentGuess(i) === letter){
-          count++;
-          currentGuess.replace(currentGuess[i], '');
-          continue;
-        }
-      }
-    }
-    setGuessedWords((prev) => [...prev, {guessedWord: word, letterMatchCount: count}]);
-  }
 
   const [success, setSuccess] = useState(false);
   const updateSuccess = (currentGuess) => (currentGuess === secretWord ? setSuccess(true) : setSuccess(false));
 
 
   return (
-    <div className="App container">
+    <div className="App container" data-test="component-app">
       <h1>Jotto</h1>
       <Congrats success={false} />
       <GuessedWords guessedWords={guessedWords} />
