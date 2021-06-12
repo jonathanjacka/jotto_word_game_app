@@ -1,8 +1,7 @@
 //import { render, screen } from '@testing-library/react';
 import App from './App';
 import { shallow } from 'enzyme';
-import { findByTestAttr, findByTestAttribute } from '../test/testUtils.js';
-
+import { findByTestAttr } from '../../test/testUtils.js';
 
 /**
  * Factory function to create shallow wrapper for the Input component
@@ -11,8 +10,7 @@ import { findByTestAttr, findByTestAttribute } from '../test/testUtils.js';
  */
 const setup = () => {
   return shallow(<App />);
-}
-
+};
 
 test('renders without error', () => {
   const wrapper = setup();
