@@ -19,15 +19,92 @@ const setup = (state = {}) => {
 
   //add value to input box
   const inputBox = findByTestAttr(wrapper, 'input-box');
-  inputBox.simulate('change', { target: { value: 'train ' } });
+  inputBox.simulate('change', { target: { value: 'train' } });
 
   //simulate click on submit button
   const submitButton = findByTestAttr(wrapper, 'submit-button');
   submitButton.simulate('click', { preventDefault() {} });
+
+  return wrapper;
 };
 
-describe('no words have been guessed', () => {});
+describe('no words have been guessed', () => {
+  let wrapper;
 
-describe('some words have been guessed', () => {});
+  beforeEach(() => {
+    wrapper = setup({
+      secretWord: 'party',
+      success: false,
+      guessedWords: [],
+    });
+  });
 
-describe('correct word is guessed', () => {});
+  test('Creates Guessed words table with one row', () => {
+    const guessedWordRows = findByTestAttr(wrapper, 'guessed-word');
+    expect(guessedWordRows).toHaveLength(1);
+  });
+});
+
+describe('some words have been guessed', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = setup({
+      secretWord: 'party',
+      success: false,
+      guessedWords: [
+        { guessedWord: 'agile', letterMatchCount: 1 },
+        { guessedWord: 'sorts', letterMatchCount: 2 },
+        { guessedWord: 'yards', letterMatchCount: 3 },
+      ],
+    });
+  });
+
+  test('Creates Guesssed words table with four rows', () => {
+    const guessedWordRows = findByTestAttr(wrapper, 'guessed-word');
+    expect(guessedWordRows).toHaveLength(4);
+  });
+});
+
+describe('correct word is guessed', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = setup({
+      secretWord: 'party',
+      success: false,
+      guessedWords: [
+        { guessedWord: 'agile', letterMatchCount: 1 },
+        { guessedWord: 'sorts', letterMatchCount: 2 },
+        { guessedWord: 'yards', letterMatchCount: 3 },
+      ],
+    });
+
+    //add entry of secretWord
+    const inputBox = findByTestAttr(wrapper, 'input-box');
+    const mockEvent = { target: { value: 'party' } };
+    inputBox.simulate('click', { preventDefault() {} });
+  });
+
+  test('Creates a guessed words table with five rows', () => {
+    const guessedWordRows = findByTestAttr(wrapper, 'guessed-word');
+    expect(guessedWordRows).toHaveLength(5);
+  });
+
+  test('Success state updates to true', () => {});
+
+  test('displays congrats component', () => {
+    const congratsMessage = findByTestAttr(wrapper, 'congrats-message');
+    expect(congratsMessage).toHaveLength(1);
+  });
+
+  test('does not display input component input box', () => {
+    const inputBox = findByTestAttr(wrapper, 'input-box');
+    expect(inputBox.exists()).toBe(false);
+  });
+
+  test('does not display input component submit button', () => {
+    const submitButton = findByTestAttr(wrapper, 'submit-button');
+    expect(submitButton.exists()).toBe(false);
+  });
+});

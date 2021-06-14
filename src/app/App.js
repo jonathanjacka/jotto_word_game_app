@@ -8,11 +8,7 @@ import { Input } from '../components/input/input.js';
 function App() {
   const [secretWord, setSecretWord] = useState('party');
 
-  const [guessedWords, setGuessedWords] = useState([
-    { guessedWord: 'train', letterMatchCount: 3 },
-    { guessedWord: 'agile', letterMatchCount: 1 },
-    { guessedWord: 'parti', letterMatchCount: 4 },
-  ]);
+  const [guessedWords, setGuessedWords] = useState([]);
 
   const [success, setSuccess] = useState(false);
   const updateSuccess = (currentGuess) =>
@@ -21,13 +17,9 @@ function App() {
   return (
     <div className='App container' data-test='component-app'>
       <h1>Jotto</h1>
-      <Congrats success={false} />
+      <Congrats success={success} />
       <GuessedWords guessedWords={guessedWords} />
-      <Input
-        guessedWords={guessedWords}
-        success={false}
-        secretWord={secretWord}
-      />
+      <Input success={success} secretWord={secretWord} />
     </div>
   );
 }
