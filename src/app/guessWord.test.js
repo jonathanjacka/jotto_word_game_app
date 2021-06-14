@@ -83,7 +83,10 @@ describe.skip('correct word is guessed', () => {
     //add entry of secretWord
     const inputBox = findByTestAttr(wrapper, 'input-box');
     const mockEvent = { target: { value: 'party' } };
-    inputBox.simulate('click', { preventDefault() {} });
+    inputBox.simulate('change', mockEvent);
+
+    const submitButton = findByTestAttr(wrapper, 'submit-button');
+    submitButton.simulate('click', { preventDefault() {} });
   });
 
   test('Creates a guessed words table with five rows', () => {
