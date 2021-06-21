@@ -1,4 +1,5 @@
 import moxios from 'moxios';
+import { getSecretWord } from './index';
 
 describe('getWordWord', () => {
   beforeEach(() => {
@@ -8,5 +9,18 @@ describe('getWordWord', () => {
     moxios.uninstall();
   });
 
-  test('secretWord os returned', () => {});
+  test('secretWord is returned', () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: 'party',
+      });
+    });
+
+    // TODO: Update to test app in Redux / context sections
+    return getSecretWord().then((secretWord) => {
+      expect(secretWord).toBe('party');
+    });
+  });
 });
