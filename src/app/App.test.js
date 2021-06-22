@@ -2,6 +2,10 @@
 import App from './App';
 import { shallow } from 'enzyme';
 import { findByTestAttr } from '../../test/testUtils.js';
+import { getSecretWord as mockGetSecretWord } from '../actions';
+
+//activate global mock to make sure getSecretWord actually run network call
+jest.mock('../actions');
 
 /**
  * Factory function to create shallow wrapper for the Input component
