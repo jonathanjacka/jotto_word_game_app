@@ -13,6 +13,7 @@ function App() {
   const [guessedWords, setGuessedWords] = useState([]);
 
   const [success, setSuccess] = useState(false);
+
   const updateSuccess = (currentGuess) =>
     currentGuess === secretWord ? setSuccess(true) : setSuccess(false);
 
