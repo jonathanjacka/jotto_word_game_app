@@ -1,12 +1,13 @@
 import moxios from 'moxios';
-import { getSecretWord, correctGuess, actionTypes } from './index';
+import { getSecretWord } from './index';
 
-describe('correct guess', () => {
-  test('returns an action with type "CORRECT_GUESS"', () => {
-    const action = correctGuess();
-    expect(action).toStrictEqual({ type: actionTypes.CORRECT_GUESS });
-  });
-});
+//Removed because we're no longer using correctGuess as standalone function, now part of guessedWord()
+// describe('correct guess', () => {
+//   test('returns an action with type "CORRECT_GUESS"', () => {
+//     const action = correctGuess();
+//     expect(action).toStrictEqual({ type: actionTypes.CORRECT_GUESS });
+//   });
+// });
 
 describe('getWordWord', () => {
   beforeEach(() => {
