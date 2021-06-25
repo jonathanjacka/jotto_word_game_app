@@ -1,8 +1,9 @@
 //import { render, screen } from '@testing-library/react';
 import App from './App';
 import { mount } from 'enzyme';
-import { findByTestAttr } from '../../test/testUtils.js';
+import { findByTestAttr, storeFactory } from '../../test/testUtils.js';
 import { getSecretWord as mockGetSecretWord } from '../actions';
+import { Provider } from 'react-redux';
 
 //activate global mock to make sure getSecretWord actually run network call
 jest.mock('../actions');
@@ -15,7 +16,12 @@ jest.mock('../actions');
 const setup = () => {
   //need to use mount, b/c useEffect is not run on 'shallow' - https://github.com/enzymejs/enzyme/issues/2086
   //Package to solve this issue here, though I'm not going to use this rn - https://www.npmjs.com/package/jest-react-hooks-shallow
-  return mount(<App />);
+  const store = storeFactory();
+  return mount(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
 };
 
 test('renders without error', () => {

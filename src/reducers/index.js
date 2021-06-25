@@ -1,6 +1,4 @@
 import { combineReducers } from 'redux';
-import success from './successReducer';
+import { successReducer as success } from './successReducer';
 
-export default combineReducers({
-  success,
-});
+export default combineReducers({ success });
