@@ -1,5 +1,6 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import rootReducer from '../src/reducers/index';
+import { middlewares } from '../src/reducers/configureStore';
 
 /**
  * Creates a tesing store with imported reducers, middleware, and an initial state
@@ -9,7 +10,11 @@ import rootReducer from '../src/reducers/index';
  * @returns {Store} - redux store
  */
 export const storeFactory = (initialState) => {
-  return createStore(rootReducer, initialState);
+  return createStore(
+    rootReducer,
+    initialState,
+    applyMiddleware(...middlewares)
+  );
 };
 
 /**
