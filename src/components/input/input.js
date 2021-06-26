@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import Proptypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { guessWord } from '../../actions';
 
 export const Input = ({ secretWord }) => {
   const [currentGuess, setCurrentGuess] = useState('');
   const success = useSelector((state) => state.success);
+  const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    //add currentGuess to guessedWords Array
-
-    // if (currentGuess === secretWord) {
-    //   //update success
-    //   success = true;
-    // }
-
+    dispatch(guessWord(currentGuess));
     setCurrentGuess('');
   };
 

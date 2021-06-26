@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import './App.css';
 
 import { useEffect } from 'react';
@@ -8,14 +9,10 @@ import { Input } from '../components/input/input.js';
 import { getSecretWord } from '../actions';
 
 function App() {
+  const success = useSelector((state) => state.success);
+  const guessedWords = useSelector((state) => state.guessedWords);
+
   const [secretWord, setSecretWord] = useState('party');
-
-  const [guessedWords, setGuessedWords] = useState([]);
-
-  const [success, setSuccess] = useState(false);
-
-  const updateSuccess = (currentGuess) =>
-    currentGuess === secretWord ? setSuccess(true) : setSuccess(false);
 
   useEffect(() => {
     getSecretWord();
