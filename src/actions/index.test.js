@@ -1,5 +1,6 @@
 import moxios from 'moxios';
 import { getSecretWord } from './index';
+import { storeFactory } from '../../test/testUtils';
 
 //Removed because we're no longer using correctGuess as standalone function, now part of guessedWord()
 // describe('correct guess', () => {
@@ -9,7 +10,7 @@ import { getSecretWord } from './index';
 //   });
 // });
 
-describe('getWordWord', () => {
+describe('getSecretWord', () => {
   beforeEach(() => {
     moxios.install();
   });
@@ -18,6 +19,7 @@ describe('getWordWord', () => {
   });
 
   test('secretWord is returned', () => {
+    const store = storeFactory();
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -26,8 +28,8 @@ describe('getWordWord', () => {
       });
     });
 
-    // TODO: Update to test app in Redux / context sections
-    return getSecretWord().then((secretWord) => {
+    return store.dispatch(getSecretWord()).then(() => {
+      const secretWord = store.getState().secretWord;
       expect(secretWord).toBe('party');
     });
   });
