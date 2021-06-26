@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+## This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### It was part of a course on improving testing with Jest and Enzyme
+
+Course here: https://www.udemy.com/course/react-testing-with-jest-and-enzyme/
+To install and run the random-word-server, follow the instructions from the creator of the course here: https://github.com/bonnie/udemy-ENZYME/tree/master/random-word-server
 
 ## Available Scripts
 
